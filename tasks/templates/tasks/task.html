@@ -1,0 +1,39 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<div class="add-task">
+    <br>
+    <h3>Add Tasks</h3>
+    <br>
+    <form action="/" method="POST">
+        {% csrf_token %}
+        {{ form.title }}
+        <input class="add-btn" type="submit" value="Add">
+    </form>
+    <br>
+</div>
+<hr>
+<br>
+{% for task in tasks %}
+    <div class="task-contents">
+       <div class="tasks">
+           
+            {% if task.isCompleted == True %}
+                <h3><strike>{{ task }}</strike></h3>
+                <p> Completed </p>
+            {% else %}
+                <h3>{{ task }}</h3>
+                <p>{{ task.created }}</p>
+            {% endif %}
+            <div class="task-links">
+                <span><a href="{% url 'update' task.id %}">Edit</a></span>
+                <span><a href="{% url 'remove' task.id %}">Remove</a></span>
+            </div>
+           
+        </div>
+        <br>
+    </div>
+{% endfor %}
+
+{% endblock %}

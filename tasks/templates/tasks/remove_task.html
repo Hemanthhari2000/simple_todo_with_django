@@ -1,0 +1,18 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<div class="remove-task">
+    <br>
+    <h3>Remove</h3>
+    <br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <h3>Do you wanna remove the "{{ task }}" ?</h3>
+        <br>
+        <input type="submit" value="Confirm">
+    </form>
+    <br>
+    <a href="{% url 'home' %}">Cancel</a>
+</div>
+{% endblock %}
